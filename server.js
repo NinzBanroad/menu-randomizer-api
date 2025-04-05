@@ -5,7 +5,15 @@ require('dotenv').config();
 const app = express();
 
 // Allow frontend requests
-app.use(cors());
+// uncomment the line below to allow all origins (not recommended for production)
+// app.use(cors());
+app.use(
+  cors({
+    origin: 'https://menu-randomizer-ui.onrender.com/', // Your frontend URL
+    methods: 'GET,POST,PUT,DELETE',
+    allowedHeaders: 'Content-Type,Authorization',
+  })
+);
 
 // Init Middleware
 app.use(express.json());
